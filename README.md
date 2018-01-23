@@ -17,7 +17,7 @@ Throughout the hallway, there are additional monsters that player must fight.
 
 The goal is for the player to move down the hallway, fighting monsters and making it as far as the player can until player runs 
 out of health. The game will indefinitely continue, generating new floors/levels, monsters, and items until player dies or quits. 
-Player progess is recorded by the amount of experience points earned. 
+(If have time: Player progess is recorded by the amount of experience points earned.)
 
 Levels will become more difficult/hallways will become longer the farther the player goes.
 
