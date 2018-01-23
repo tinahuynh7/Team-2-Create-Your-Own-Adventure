@@ -38,6 +38,12 @@ weapons will have durability and attack strength (percentage hit)
 
 there will be a limited inventory (player can choose to switch out items if find a new one)
 
+
+Health:
+
+health can be restored out of battle with potions 
+
+
 ### Main objects: 
 
 1. Player
