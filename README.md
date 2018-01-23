@@ -43,6 +43,12 @@ there will be a limited inventory (player can choose to switch out items if find
 1. Player
 2. Floor
 3. Room
+  - 5 types
+    - items
+    - monsters
+    - items & monsters
+    - empty
+    - “curse”
 4. Monster
 5. Item
 
