@@ -10,4 +10,14 @@
  */
 public class Item {
     
+    String name;
+    
+    Item(){
+        
+    }
+    
+    public String name() {
+        return name; 
+    }
+  
 }
