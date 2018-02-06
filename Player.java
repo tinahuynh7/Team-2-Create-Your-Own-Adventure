@@ -12,11 +12,26 @@ public class Player {
     
     int position = 0; 
     int health;
-    ArrayList <Item> inventory; 
+    ArrayList <Item> inventory = new ArrayList <Item>(); 
     
-    Player(){
-        
+    Player(){  
     }
     
+    public void add_item(Item item) {
+        inventory.add(item); 
+    }
+       
+    public void remove_item(Item item) {
+        inventory.remove(item); 
+    }
     
+    public String toString() {
+        
+        for (int i = 0; i < inventory.size(); i++) {
+            System.out.println((i+1) + inventory.get(i).name); 
+        }
+        
+        return ""; 
+    }
+     
 }
