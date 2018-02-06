@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tw;
-
+import java.util.ArrayList; 
 /**
  *
  * @author kylliefurukawa
  */
-public class TW {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Player {
+    
+    int position = 0; 
+    int health;
+    ArrayList <Item> inventory; 
+    
+    Player(){
+        
     }
+    
     
 }
