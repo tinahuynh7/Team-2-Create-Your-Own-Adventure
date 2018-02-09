@@ -101,6 +101,11 @@ public class Menu {
             System.out.println("used potion");
             //for future
         }
+        
+        else {
+            System.out.println("That is an invalid command.");
+            inventory();
+        }
     }
     
     public void drop_item_menu() {
@@ -118,9 +123,6 @@ public class Menu {
         
         System.out.println("Here is your new inventory: ");
         new_player.toString(); 
-    
-             
-    }
-    
-    
+           
+    }   
 }
