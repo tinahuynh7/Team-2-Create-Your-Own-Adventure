@@ -25,10 +25,14 @@ public class Menu {
     
     public int input_selection() {
         
-        int input_selection = sc.nextInt();
+        String input_selection = sc.nextLine();
         
-        return input_selection; 
+        Integer result = Integer.valueOf(input_selection); 
+        
+        return result; 
     }
+    
+   
     
     public void main_menu() {
         System.out.println("What would you like to do? (Type 'HELP' for a list of commands)"); 
@@ -48,7 +52,7 @@ public class Menu {
         }
         
         else if (selection.equalsIgnoreCase("MOVE")) {
-            //move function 
+            move_menu(); 
         }
         
         else {
@@ -90,16 +94,26 @@ public class Menu {
     }
     
     public void inventory() {
-        System.out.println("Would you like to 'DROP ITEM' or 'USE POTION'?");
+        System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?");
         
         String selection = input_command(); 
         if (selection.equalsIgnoreCase("DROP ITEM")) {
-            drop_item_menu();          
+            if (new_player.inventory.isEmpty()) {
+                System.out.println("Your inventory is empty. You have no items to drop.");
+                inventory(); 
+            }
+            else {
+                drop_item_menu();    
+            }
         }
         
-        if (selection.equalsIgnoreCase("USE POTION")) {
+        else if (selection.equalsIgnoreCase("USE POTION")) {
             System.out.println("used potion");
             //for future
+        }
+        
+        else if (selection.equalsIgnoreCase("BACK")) {
+            main_menu(); 
         }
         
         else {
@@ -110,19 +124,34 @@ public class Menu {
     
     public void drop_item_menu() {
         
-        System.out.println("Which item would you like to drop?");
+        System.out.println("Which item would you like to drop? (Input number next to item)");
         new_player.toString(); 
             
         int selection = input_selection(); 
         
         if (selection == 1) {
-            new_player.remove_item(1);
+            new_player.remove_item(0);
         }
         
-        //use switch for this 
+        else if (selection == 2) {
+            new_player.remove_item(1); 
+        }
+        
+        else if (selection == 3) {
+            new_player.remove_item(2); 
+        }
+        
+        else if (selection == 4) {
+            new_player.remove_item(3); 
+        }
+        
+        else {
+            System.out.println("That is an invalid command."); 
+        }
         
         System.out.println("Here is your new inventory: ");
         new_player.toString(); 
-           
+        
+        main_menu();    
     }   
 }
