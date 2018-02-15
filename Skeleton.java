@@ -1,9 +1,8 @@
 
 public class Skeleton extends Monster {
-    int health;
-    String name;
-    
-  public void Skeleton(int health,String name){
+  
+
+   Skeleton(){
     this.health = 100;
     this.name = "Skeleton";
     }
