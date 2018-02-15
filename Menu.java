@@ -48,11 +48,20 @@ public class Menu {
         else if (selection.equalsIgnoreCase("INVENTORY")) {
             System.out.println("Here is your inventory: "); 
             System.out.println(new_player.toString()); 
-            inventory();
+            inventory(new_player);
         }
         
         else if (selection.equalsIgnoreCase("MOVE")) {
             move_menu(); 
+        }
+        
+        else if (selection.equalsIgnoreCase("DROP ITEM")) {
+            drop_item_menu(new_player); 
+        }
+        
+        else if (selection.equalsIgnoreCase("USE POTION")) {
+            System.out.println("used potion");
+            //for future
         }
         
         else {
@@ -81,29 +90,49 @@ public class Menu {
             //call room 
         }
     }
-    public void weapon_selection() {
+    public Item weapon_selection(Player new_player) {
         
-        System.out.println("Select your primary weapon:" );
+        Item selected = new Item(); 
+        
+        System.out.println("Select what weapon you want to use: (Input number next to item)" );
         
         System.out.println(new_player.toString()); 
         int selection = input_selection(); 
         
         if (selection == 1) {
             System.out.println("you selected " + new_player.inventory.get(0).name() + ".");
-        }        
+            selected = new_player.inventory.get(0); 
+        }  
+        
+        else if (selection == 2) {
+            System.out.println("you selected " + new_player.inventory.get(1).name() + ".");
+            selected = new_player.inventory.get(1); 
+        }  
+        
+        else if (selection == 3) {
+            System.out.println("you selected " + new_player.inventory.get(2).name() + ".");
+            selected = new_player.inventory.get(3); 
+        }  
+        
+        else if (selection == 4) {
+            System.out.println("you selected " + new_player.inventory.get(3).name() + ".");
+            selected = new_player.inventory.get(4); 
+        }  
+        
+        return selected; 
     }
     
-    public void inventory() {
+    public void inventory(Player new_player) {
         System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?");
         
         String selection = input_command(); 
         if (selection.equalsIgnoreCase("DROP ITEM")) {
             if (new_player.inventory.isEmpty()) {
                 System.out.println("Your inventory is empty. You have no items to drop.");
-                inventory(); 
+                inventory(new_player); 
             }
             else {
-                drop_item_menu();    
+                drop_item_menu(new_player);    
             }
         }
         
@@ -118,11 +147,11 @@ public class Menu {
         
         else {
             System.out.println("That is an invalid command.");
-            inventory();
+            inventory(new_player);
         }
     }
     
-    public void drop_item_menu() {
+    public void drop_item_menu(Player new_player) {
         
         System.out.println("Which item would you like to drop? (Input number next to item)");
         new_player.toString(); 
