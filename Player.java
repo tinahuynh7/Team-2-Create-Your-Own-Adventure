@@ -32,6 +32,10 @@ public class Player {
             System.out.println((i+1) + ".) " + inventory.get(i).name()); 
         }
         
+        if (inventory.size() == 0) {
+            System.out.println("(empty)"); 
+        }
+        
         return ""; 
     }
      

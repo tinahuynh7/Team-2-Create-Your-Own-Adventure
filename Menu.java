@@ -33,7 +33,7 @@ public class Menu {
     }
     
    
-    
+    //main menu commands, in addition to certain submenu commands
     public void main_menu() {
         System.out.println("What would you like to do? (Type 'HELP' for a list of commands)"); 
         
@@ -56,7 +56,13 @@ public class Menu {
         }
         
         else if (selection.equalsIgnoreCase("DROP ITEM")) {
-            drop_item_menu(new_player); 
+             if (new_player.inventory.isEmpty()) {
+                System.out.println("Your inventory is empty. You have no items to drop.");
+                main_menu(); 
+            }
+            else {
+                drop_item_menu(new_player);    
+            }
         }
         
         else if (selection.equalsIgnoreCase("USE POTION")) {
@@ -90,6 +96,7 @@ public class Menu {
             //call room 
         }
     }
+    
     public Item weapon_selection(Player new_player) {
         
         Item selected = new Item(); 
@@ -158,24 +165,22 @@ public class Menu {
             
         int selection = input_selection(); 
         
-        if (selection == 1) {
-            new_player.remove_item(0);
-        }
-        
-        else if (selection == 2) {
-            new_player.remove_item(1); 
-        }
-        
-        else if (selection == 3) {
-            new_player.remove_item(2); 
-        }
-        
-        else if (selection == 4) {
-            new_player.remove_item(3); 
-        }
-        
-        else {
-            System.out.println("That is an invalid command."); 
+        switch (selection) {
+            case 1:
+                new_player.remove_item(0);
+                break;
+            case 2:
+                new_player.remove_item(1);
+                break;
+            case 3:
+                new_player.remove_item(2);
+                break;
+            case 4:
+                new_player.remove_item(3);
+                break;
+            default:
+                System.out.println("That is an invalid command.");
+                break; 
         }
         
         System.out.println("Here is your new inventory: ");
