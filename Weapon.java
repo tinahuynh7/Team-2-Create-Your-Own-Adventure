@@ -12,15 +12,13 @@ import java.util.ArrayList;
  */
 public class Weapon {
 
+    int attack_strength;
+    int durability;
+    int damage;
+   
     public static Weapon getWeapon(ItemList item) {
-
-        ArrayList<Item> Array = new ArrayList<Item>();
+         ArrayList<Item> array = new ArrayList<Item>();        
         Weapon weapon = new Weapon();
-
-        int attack_strength;
-        int durability;
-        int damage;
-
         return weapon;
     }
 
@@ -28,7 +26,7 @@ public class Weapon {
         Item shotgun = new Item("Shotgun");
         Item bow = new Item("Bow");
         Item gun = new Item("Gun");
-        
+
     }
 
     public String getDescription(String gun) {
@@ -52,8 +50,6 @@ public class Weapon {
 
     private static void Giveplayer_weapon(boolean hasWeapon, int w) {
         hasWeapon = true;
-        for w< (weapons.length - 1)  {
-        }
     }
 
     public void consume() {
