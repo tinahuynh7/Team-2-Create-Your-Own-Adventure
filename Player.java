@@ -14,6 +14,7 @@ public class Player {
     int health;
     ArrayList <Item> inventory = new ArrayList <Item>(); 
     
+    
     Player(){  
     }
     
@@ -21,14 +22,14 @@ public class Player {
         inventory.add(item); 
     }
        
-    public void remove_item(Item item) {
-        inventory.remove(item); 
+    public void remove_item(int i) {
+        inventory.remove(i); 
     }
     
     public String toString() {
         
         for (int i = 0; i < inventory.size(); i++) {
-            System.out.println((i+1) + inventory.get(i).name); 
+            System.out.println((i+1) + ".) " + inventory.get(i).name()); 
         }
         
         return ""; 
