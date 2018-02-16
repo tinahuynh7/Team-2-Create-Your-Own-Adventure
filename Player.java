@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Player {
     
     int position = 0; 
-    int health;
+    int health = 100;
     ArrayList <Item> inventory = new ArrayList <Item>(); 
     
     
@@ -28,6 +28,11 @@ public class Player {
         inventory.remove(i); 
     }
     
+    //health
+    public int health_count() {
+        return health; 
+    }
+    
     //print inventory
     public String toString() {
         
@@ -40,7 +45,7 @@ public class Player {
             System.out.println("(empty)"); 
         }
         
-        return ""; 
+        return "\n"; 
     }
      
 }

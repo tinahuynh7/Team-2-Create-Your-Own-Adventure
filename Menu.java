@@ -34,20 +34,20 @@ public class Menu {
    
     //main menu commands, in addition to certain submenu commands
     public void main_menu() {
-        System.out.println("What would you like to do? (Type 'HELP' for a list of commands)"); 
+        System.out.println(" \nWhat would you like to do? (Type 'HELP' for a list of commands)\n"); 
         
         String selection = input_command(); 
         
         //displays help menu
         if (selection.equalsIgnoreCase("HELP")) {
-            System.out.println("to view inventory: 'INVENTORY'");
-            System.out.println("to move: 'MOVE'"); 
+            System.out.println("\nTo view inventory: 'INVENTORY'");
+            System.out.println("To move: 'MOVE'"); 
             main_menu(); 
         }
         
         //leads to inventory menu
         else if (selection.equalsIgnoreCase("INVENTORY")) {
-            System.out.println("Here is your inventory: "); 
+            System.out.println("\nHere is your inventory: "); 
             System.out.println(new_player.toString()); 
             inventory_action(new_player);
         }
@@ -71,8 +71,12 @@ public class Menu {
         
         //allows player to use a potion
         else if (selection.equalsIgnoreCase("USE POTION")) {
-            System.out.println("used potion");
-            //for future
+            System.out.println("A potion has been used.");
+           
+            //basic health count where health +1 
+            raise_health(new_player); 
+            System.out.println("Health: " + new_player.health_count());
+            main_menu(); 
         }
         
         //rejects any other commands player attempts to input
@@ -86,7 +90,7 @@ public class Menu {
     //movement menu
     public void move_menu() {
         
-        System.out.println("Would you like to move 'FOWARD', 'BACKWARDS', or 'ENTER ROOM'?"); 
+        System.out.println("\nWould you like to move 'FOWARD', 'BACKWARDS', or 'ENTER ROOM'?\n"); 
         
         String selection = input_command(); 
         
@@ -110,7 +114,7 @@ public class Menu {
     //allows player to select a weapon for battle
     public Item weapon_selection(Player new_player) {
         
-        System.out.println("Select what weapon you want to use: (Input number next to item)" );
+        System.out.println("\nSelect what weapon you want to use: (Input number next to item)" );
         
         Item selected = new Item(); 
         System.out.println(new_player.toString()); 
@@ -144,7 +148,7 @@ public class Menu {
     
     //options menu for action with inventory
     public void inventory_action(Player new_player) {
-        System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?");        
+        System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?\n");        
         String selection = input_command(); 
         
         //allows player to drop an item if inventory has items
@@ -158,10 +162,14 @@ public class Menu {
             }
         }
         
-        //allows player to use potion
+        //allows player to use a potion
         else if (selection.equalsIgnoreCase("USE POTION")) {
-            System.out.println("used potion");
-            //for future
+            System.out.println("A potion has been used.");
+           
+            //basic health count where health +1 
+            raise_health(new_player); 
+            System.out.println("Health: " + new_player.health_count());
+            main_menu(); 
         }
         
         //goes back to main menu
@@ -179,7 +187,7 @@ public class Menu {
     //menu to drop an item 
     public void drop_item_menu(Player new_player) {
         
-        System.out.println("Which item would you like to drop? (Input number next to item)");
+        System.out.println("\nWhich item would you like to drop? (Input number next to item)");
         new_player.toString(); 
             
         int selection = input_selection(); 
@@ -203,9 +211,16 @@ public class Menu {
                 break; 
         }
         
-        System.out.println("Here is your new inventory: ");
+        System.out.println("\nHere is your new inventory: ");
         new_player.toString(); 
         
         main_menu();    
     }   
+    
+    //basic raise health by 1 
+    public int raise_health(Player new_player) {        
+        new_player.health ++; 
+        int health = new_player.health;  
+        return health;
+    }
 }
