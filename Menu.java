@@ -9,6 +9,7 @@ import java.util.Scanner;
 @author kylliefurukawa
 */
 public class Menu {
+    
     Scanner sc = new Scanner(System.in); 
     Player new_player; 
     
@@ -16,19 +17,17 @@ public class Menu {
         this.new_player = new_player; 
     }
     
+    //function to type in commands
     public String input_command() { 
-    
-        String input_command = sc.nextLine();
-        
+        String input_command = sc.nextLine();        
         return input_command; 
     }
     
-    public int input_selection() {
-        
+    //function to type in a numbered selection
+    public int input_selection() {       
         String input_selection = sc.nextLine();
-        
-        Integer result = Integer.valueOf(input_selection); 
-        
+        //convert String input_selection to integer
+        Integer result = Integer.valueOf(input_selection);
         return result; 
     }
     
@@ -39,37 +38,44 @@ public class Menu {
         
         String selection = input_command(); 
         
+        //displays help menu
         if (selection.equalsIgnoreCase("HELP")) {
             System.out.println("to view inventory: 'INVENTORY'");
             System.out.println("to move: 'MOVE'"); 
             main_menu(); 
         }
         
+        //leads to inventory menu
         else if (selection.equalsIgnoreCase("INVENTORY")) {
             System.out.println("Here is your inventory: "); 
             System.out.println(new_player.toString()); 
-            inventory(new_player);
+            inventory_action(new_player);
         }
         
+        //leads to move menu
         else if (selection.equalsIgnoreCase("MOVE")) {
             move_menu(); 
         }
         
+        //allows player to drop an item if inventory has items
         else if (selection.equalsIgnoreCase("DROP ITEM")) {
              if (new_player.inventory.isEmpty()) {
                 System.out.println("Your inventory is empty. You have no items to drop.");
                 main_menu(); 
             }
+             
             else {
                 drop_item_menu(new_player);    
             }
         }
         
+        //allows player to use a potion
         else if (selection.equalsIgnoreCase("USE POTION")) {
             System.out.println("used potion");
             //for future
         }
         
+        //rejects any other commands player attempts to input
         else {
             System.out.println ("That is not a valid command."); 
             main_menu(); 
@@ -77,87 +83,100 @@ public class Menu {
 
     }
     
+    //movement menu
     public void move_menu() {
         
         System.out.println("Would you like to move 'FOWARD', 'BACKWARDS', or 'ENTER ROOM'?"); 
         
         String selection = input_command(); 
         
+        //move foward
         if (selection.equalsIgnoreCase("FOWARD")) {
             //player position++
         }
         
+        //move backwards
         if (selection.equalsIgnoreCase("BACKWARDS")) {
             //player position--           
         }
         
+        //enter room
         if (selection.equalsIgnoreCase("ENTER ROOM")) {
             //check if room
             //call room 
         }
     }
     
+    //allows player to select a weapon for battle
     public Item weapon_selection(Player new_player) {
-        
-        Item selected = new Item(); 
         
         System.out.println("Select what weapon you want to use: (Input number next to item)" );
         
+        Item selected = new Item(); 
         System.out.println(new_player.toString()); 
         int selection = input_selection(); 
         
+        //select first item
         if (selection == 1) {
             System.out.println("you selected " + new_player.inventory.get(0).name() + ".");
             selected = new_player.inventory.get(0); 
         }  
         
+        //select second item
         else if (selection == 2) {
             System.out.println("you selected " + new_player.inventory.get(1).name() + ".");
             selected = new_player.inventory.get(1); 
         }  
         
+        //select third item
         else if (selection == 3) {
             System.out.println("you selected " + new_player.inventory.get(2).name() + ".");
             selected = new_player.inventory.get(3); 
         }  
         
+        //select fourth item
         else if (selection == 4) {
             System.out.println("you selected " + new_player.inventory.get(3).name() + ".");
             selected = new_player.inventory.get(4); 
         }  
-        
         return selected; 
     }
     
-    public void inventory(Player new_player) {
-        System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?");
-        
+    //options menu for action with inventory
+    public void inventory_action(Player new_player) {
+        System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?");        
         String selection = input_command(); 
+        
+        //allows player to drop an item if inventory has items
         if (selection.equalsIgnoreCase("DROP ITEM")) {
             if (new_player.inventory.isEmpty()) {
                 System.out.println("Your inventory is empty. You have no items to drop.");
-                inventory(new_player); 
+                inventory_action(new_player); 
             }
             else {
                 drop_item_menu(new_player);    
             }
         }
         
+        //allows player to use potion
         else if (selection.equalsIgnoreCase("USE POTION")) {
             System.out.println("used potion");
             //for future
         }
         
+        //goes back to main menu
         else if (selection.equalsIgnoreCase("BACK")) {
             main_menu(); 
         }
         
+        //rejects any other commands player attempts to input
         else {
             System.out.println("That is an invalid command.");
-            inventory(new_player);
+            inventory_action(new_player);
         }
     }
     
+    //menu to drop an item 
     public void drop_item_menu(Player new_player) {
         
         System.out.println("Which item would you like to drop? (Input number next to item)");
@@ -165,6 +184,7 @@ public class Menu {
             
         int selection = input_selection(); 
         
+        //allows player to select a number to drop item
         switch (selection) {
             case 1:
                 new_player.remove_item(0);
