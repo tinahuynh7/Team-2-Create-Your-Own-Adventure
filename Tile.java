@@ -6,6 +6,8 @@ public class Tile {
     Monster monster;
     Player player;
     Item item;
+    Tile RoomL;
+    Tile RoomR;
     
     Tile(Monster monster) {
         this.monster = monster;
