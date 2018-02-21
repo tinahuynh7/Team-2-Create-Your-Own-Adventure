@@ -42,6 +42,8 @@ public class Menu {
         if (selection.equalsIgnoreCase("HELP")) {
             System.out.println("\nTo view inventory: 'INVENTORY'");
             System.out.println("To move: 'MOVE'"); 
+            System.out.println("To drop an item: 'DROP ITEM'"); 
+            System.out.println("To use a potion: 'USE POTION'"); 
             main_menu(); 
         }
         
@@ -49,7 +51,7 @@ public class Menu {
         else if (selection.equalsIgnoreCase("INVENTORY")) {
             System.out.println("\nHere is your inventory: "); 
             System.out.println(new_player.toString()); 
-            inventory_action(new_player);
+            main_menu();
         }
         
         //leads to move menu
@@ -71,12 +73,7 @@ public class Menu {
         
         //allows player to use a potion
         else if (selection.equalsIgnoreCase("USE POTION")) {
-            System.out.println("A potion has been used.");
-           
-            //basic health count where health +1 
-            raise_health(new_player); 
-            System.out.println("Health: " + new_player.health_count());
-            main_menu(); 
+            use_potion();          
         }
         
         //rejects any other commands player attempts to input
@@ -87,6 +84,22 @@ public class Menu {
 
     }
     
+    public void use_potion() {
+        if (new_player.potion_inventory > 0) {
+            System.out.println("\nA potion has been used.");
+           
+            //basic health count where health +1 
+            raise_health(new_player); 
+            subtract_potion(new_player); 
+            System.out.println("Health: " + new_player.health);
+            main_menu(); 
+        }
+            
+        else {
+            System.out.println("\nYou do not have any potions to use.\n");
+            main_menu();
+        }
+    }
     //movement menu
     public void move_menu() {
         
@@ -146,43 +159,7 @@ public class Menu {
         return selected; 
     }
     
-    //options menu for action with inventory
-    public void inventory_action(Player new_player) {
-        System.out.println("Would you like to 'DROP ITEM', 'USE POTION', or go 'BACK'?\n");        
-        String selection = input_command(); 
-        
-        //allows player to drop an item if inventory has items
-        if (selection.equalsIgnoreCase("DROP ITEM")) {
-            if (new_player.inventory.isEmpty()) {
-                System.out.println("Your inventory is empty. You have no items to drop.");
-                inventory_action(new_player); 
-            }
-            else {
-                drop_item_menu(new_player);    
-            }
-        }
-        
-        //allows player to use a potion
-        else if (selection.equalsIgnoreCase("USE POTION")) {
-            System.out.println("A potion has been used.");
-           
-            //basic health count where health +1 
-            raise_health(new_player); 
-            System.out.println("Health: " + new_player.health_count());
-            main_menu(); 
-        }
-        
-        //goes back to main menu
-        else if (selection.equalsIgnoreCase("BACK")) {
-            main_menu(); 
-        }
-        
-        //rejects any other commands player attempts to input
-        else {
-            System.out.println("That is an invalid command.");
-            inventory_action(new_player);
-        }
-    }
+    
     
     //menu to drop an item 
     public void drop_item_menu(Player new_player) {
@@ -217,10 +194,29 @@ public class Menu {
         main_menu();    
     }   
     
+    //add potion to potion inventory
+    public int add_potion(Player new_player) {
+        new_player.potion_inventory = new_player.potion_inventory + 1; 
+        int potion_count = new_player.potion_inventory;
+        return potion_count;
+    }
+    
+    public int subtract_potion(Player new_player) {
+        new_player.potion_inventory = new_player.potion_inventory - 1; 
+        int potion_count = new_player.potion_inventory;
+        return potion_count; 
+    }
+    
     //basic raise health by 1 
     public int raise_health(Player new_player) {        
         new_player.health ++; 
-        int health = new_player.health;  
-        return health;
+        return new_player.health;
     }
+    
+    //basic lower health by 1 
+    public int lower_health(Player new_player) {        
+        new_player.health --; 
+        return new_player.health;
+    }
+    
 }

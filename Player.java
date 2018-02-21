@@ -12,10 +12,11 @@ public class Player {
     
     int position = 0; 
     int health = 100;
+    int potion_inventory = 0; 
     ArrayList <Item> inventory = new ArrayList <Item>(); 
     
     
-    Player(){  
+    Player(){ 
     }
     
     //add item
@@ -28,11 +29,6 @@ public class Player {
         inventory.remove(i); 
     }
     
-    //health
-    public int health_count() {
-        return health; 
-    }
-    
     //print inventory
     public String toString() {
         
@@ -42,10 +38,11 @@ public class Player {
         
         //print "empty" if empty
         if (inventory.size() == 0) {
-            System.out.println("(empty)"); 
+            System.out.println("(weapons inventory empty)"); 
         }
         
-        return "\n"; 
+        System.out.println("Potion count: " + potion_inventory);
+        return "\n "; 
     }
      
 }
