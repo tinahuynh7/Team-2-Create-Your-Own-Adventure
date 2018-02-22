@@ -6,4 +6,4 @@ new_player.add_item(test);
 Menu new_menu = new Menu(new_player); 
 new_player.potion_inventory = 5;
         
-new_menu.main_menu();
+new_menu.intro_menu();
