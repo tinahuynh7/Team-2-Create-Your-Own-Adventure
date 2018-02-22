@@ -31,6 +31,12 @@ public class Menu {
         return result; 
     }
     
+    //introduction menu
+    public void intro_menu() {
+        System.out.println("introduction in progress");
+        //if have time, will allow player to choose class (mage, warrior, ranged)
+        main_menu(); 
+    }
    
     //main menu commands, in addition to certain submenu commands
     public void main_menu() {
@@ -84,6 +90,41 @@ public class Menu {
 
     }
     
+    //battle menu
+    public void battle_menu() {
+        //later will change so that actual monster name is displayed
+        System.out.println("A monster has approached you. Would you like to 'ATTACK', 'INSEPCT' the monster, or 'RUN'?");
+        
+        String selection = input_command(); 
+
+        
+        if (selection.equalsIgnoreCase("ATTACK")) {
+            if (new_player.inventory.isEmpty()) {
+                System.out.println("You do not have any weapons to attack.");
+                battle_menu(); 
+            }
+            else {
+                Item selected_weapon = weapon_selection(new_player); 
+                //attack menu based on game controller   
+            }
+        }
+        
+        else if (selection.equalsIgnoreCase("INSPECT")) {
+            //print the description of the monster
+            battle_menu();
+        }
+        
+        else if (selection.equalsIgnoreCase("RUN")) {
+            System.out.println("You have ran away.");
+            main_menu(); 
+        }
+        
+        else {
+            System.out.println("That is an invalid command."); 
+            battle_menu(); 
+        }
+    }
+    
     public void use_potion() {
         if (new_player.potion_inventory > 0) {
             System.out.println("\nA potion has been used.");
@@ -124,9 +165,10 @@ public class Menu {
         }
     }
     
-    //allows player to select a weapon for battle
+    //allows player to select a weapon for battle, will only be called if there is at least on item in inventory
     public Item weapon_selection(Player new_player) {
-        
+        int size = new_player.inventory.size(); 
+
         System.out.println("\nSelect what weapon you want to use: (Input number next to item)" );
         
         Item selected = new Item(); 
@@ -141,21 +183,44 @@ public class Menu {
         
         //select second item
         else if (selection == 2) {
-            System.out.println("you selected " + new_player.inventory.get(1).name() + ".");
-            selected = new_player.inventory.get(1); 
+            if (size >= 2) {
+                System.out.println("you selected " + new_player.inventory.get(1).name() + ".");
+                selected = new_player.inventory.get(1); 
+            }
+            else {
+                System.out.println("That is an invalid selection.");
+                weapon_selection(new_player); 
+            }
         }  
         
         //select third item
         else if (selection == 3) {
-            System.out.println("you selected " + new_player.inventory.get(2).name() + ".");
-            selected = new_player.inventory.get(3); 
+            if (size >= 3) {
+                System.out.println("you selected " + new_player.inventory.get(2).name() + ".");
+                selected = new_player.inventory.get(3); 
+            }
+            else {
+                System.out.println("That is an invalid selection.");
+                weapon_selection(new_player); 
+            }           
         }  
         
         //select fourth item
         else if (selection == 4) {
-            System.out.println("you selected " + new_player.inventory.get(3).name() + ".");
-            selected = new_player.inventory.get(4); 
+            if (size >= 4) {
+                System.out.println("you selected " + new_player.inventory.get(3).name() + ".");
+                selected = new_player.inventory.get(4); 
+            }
+            else {
+                System.out.println("That is an invalid selection.");
+                weapon_selection(new_player); 
+            }                 
         }  
+        
+        else {
+            System.out.println("That is an invalid selection.");
+            weapon_selection(new_player); 
+        }
         return selected; 
     }
     
