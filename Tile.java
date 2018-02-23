@@ -16,19 +16,20 @@ public class Tile {
     
     public String toString()
     {
-        String RO = " ";
-        if (RoomL != null){
-        RO=RO+" || "+RoomL.Read;
+        String R="   ";
+        String L="   ";
+        if (RoomR != null){
+        R="[ ]";
         }
-        if (RoomR!=null){
-        RO=RO+" || "+RoomR.Read;
+        if (RoomL!=null){
+        L="[ ]";
         }
         if (monster == null)
         {
-        return "Blank" + "    " + RO;
+        return L+"[ ]" + R;
         }
         else {
-        return this.monster.name + " " +RO;
+        return L+"[@]" +R;
         }
         
         
