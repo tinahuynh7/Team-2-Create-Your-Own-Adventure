@@ -6,16 +6,32 @@ public class Tile {
     Monster monster;
     Player player;
     Item item;
-    Tile RoomL;
-    Tile RoomR;
+    Desc RoomL;
+    Desc RoomR;
     
-    Tile(Monster monster) {
+    
+    public void addMonster(Monster monster) {
         this.monster = monster;
     }
     
     public String toString()
     {
-        return this.monster.name;
+        String RO = " ";
+        if (RoomL != null){
+        RO=RO+" || "+RoomL.Read;
+        }
+        if (RoomR!=null){
+        RO=RO+" || "+RoomR.Read;
+        }
+        if (monster == null)
+        {
+        return "Blank" + "    " + RO;
+        }
+        else {
+        return this.monster.name + " " +RO;
+        }
+        
+        
     }
 
 }
