@@ -116,9 +116,4 @@ Get the basic movement through game going
 
 - Kyllie and Tina --> Working on Menu class and primary function within to move through game (main_menu(Tile)), if have time work on more functions (like inventory, move, and battle)
 Edward and Hayden's To Do list:
-
-Edit Crypt to add rooms
-
-Create a room db and fill
-
-Finish left and right rooms and create templates and stuff yeah
+Flesh out Monster and Room Templates 

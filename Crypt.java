@@ -54,4 +54,10 @@ public class Crypt {
             this.Desc_db.add(BlankRoom);
         }
     }
+    public void printMap(){
+    for (int i = 0; i<this.floorplan.size(); i++){
+            Tile tile = this.floorplan.get(i);
+            System.out.println(tile);
+        }
+}
 }
