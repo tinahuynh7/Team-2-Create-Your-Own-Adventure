@@ -10,8 +10,8 @@ import java.util.Scanner;
 */
 public class Menu {
     
-    Scanner sc = new Scanner(System.in); 
-    Player new_player; 
+    private Scanner sc = new Scanner(System.in); 
+    private Player new_player; 
     
     Menu(Player new_player){
         this.new_player = new_player; 
