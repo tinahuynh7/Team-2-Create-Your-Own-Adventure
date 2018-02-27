@@ -17,6 +17,7 @@ public class Item {
     }
 
     public String name() {
+        name = "test item"; 
         return name;
     }
 
@@ -33,10 +34,5 @@ public class Item {
         public void attack() {
 
         }
-    }
-
-    class Potion extends Item {
-
-        int health;
     }
 }
