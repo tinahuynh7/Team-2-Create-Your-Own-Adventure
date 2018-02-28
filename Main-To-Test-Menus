@@ -1,9 +1,14 @@
-Player new_player = new Player(); 
+ Player new_player = new Player(); 
 Item test = new Item();
 Item weapon = new Item(); 
 new_player.add_item(weapon); 
 new_player.add_item(test);
-Menu new_menu = new Menu(new_player); 
+Crypt new_crypt = new Crypt(); 
+Menu new_menu = new Menu(new_player, new_crypt); 
 new_player.potion_inventory = 5;
         
+new_crypt.genWorld();
+new_crypt.fill_cat();
+new_crypt.fill_Rcat();
+new_crypt.printMap();
 new_menu.intro_menu();
