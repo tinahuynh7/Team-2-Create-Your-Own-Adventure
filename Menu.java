@@ -253,7 +253,7 @@ public class Menu {
                 break; 
         }
         
-        System.out.println("\nHere is your new inventory: ");
+        System.out.println("\nHere is your updated inventory: ");
         new_player.toString(); 
         
         main_menu();    
