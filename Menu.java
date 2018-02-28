@@ -12,9 +12,11 @@ public class Menu {
     
     private Scanner sc = new Scanner(System.in); 
     private Player new_player; 
+    Crypt new_crypt = new Crypt(); 
     
-    Menu(Player new_player){
-        this.new_player = new_player; 
+    Menu(Player new_player, Crypt new_crypt) {
+        this.new_player = new_player;
+        this.new_crypt = new_crypt; 
     }
     
     //function to type in commands
@@ -47,6 +49,7 @@ public class Menu {
         //displays help menu
         if (selection.equalsIgnoreCase("HELP")) {
             System.out.println("\nTo view inventory: 'INVENTORY'");
+            System.out.println("To view map: 'MAP'"); 
             System.out.println("To move: 'MOVE'"); 
             System.out.println("To drop an item: 'DROP ITEM'"); 
             System.out.println("To use a potion: 'USE POTION'"); 
@@ -60,6 +63,11 @@ public class Menu {
             main_menu();
         }
         
+        else if (selection.equalsIgnoreCase("MAP")) {
+            System.out.println("\nHere is the map:\n"); 
+            view_map(new_crypt); 
+            main_menu(); 
+        }
         //leads to move menu
         else if (selection.equalsIgnoreCase("MOVE")) {
             move_menu(); 
@@ -284,4 +292,7 @@ public class Menu {
         return new_player.health;
     }
     
+    public void view_map(Crypt new_crypt) {
+        new_crypt.printMap();
+    } 
 }
