@@ -36,12 +36,23 @@ public class Menu {
     //introduction menu
     public void intro_menu() {
         System.out.println("introduction in progress");
+        System.out.println("'@' = a monster\n"); 
         //if have time, will allow player to choose class (mage, warrior, ranged)
         main_menu(); 
     }
-   
-    //main menu commands, in addition to certain submenu commands
+     
+    //main menu commands
     public void main_menu() {
+        
+        /*if room/tile has monster, go to battle_menu(), else continue below
+        
+        if(      ) {
+            battle_menu() 
+        }
+        else {
+            continue;
+        }
+        */
         System.out.println(" \nWhat would you like to do? (Type 'HELP' for a list of commands)\n"); 
         
         String selection = input_command(); 
@@ -137,7 +148,7 @@ public class Menu {
         if (new_player.potion_inventory > 0) {
             System.out.println("\nA potion has been used.");
            
-            //basic health count where health +1 
+            //basic health count where health +25 
             raise_health(new_player); 
             subtract_potion(new_player); 
             System.out.println("Health: " + new_player.health);
@@ -158,16 +169,16 @@ public class Menu {
         
         //move foward
         if (selection.equalsIgnoreCase("FOWARD")) {
-            //player position++
+            new_player.position++; 
         }
         
         //move backwards
         if (selection.equalsIgnoreCase("BACKWARDS")) {
-            //player position--           
+            new_player.position--;
         }
         
         //enter room
-        if (selection.equalsIgnoreCase("ENTER ROOM")) {
+        if (selection.equalsIgnoreCase("ENTER ROOM")) {                        
             //check if room
             //call room 
         }
@@ -189,7 +200,7 @@ public class Menu {
             selected = new_player.inventory.get(0); 
         }  
         
-        //select second item
+        //select second item if exist
         else if (selection == 2) {
             if (size >= 2) {
                 System.out.println("you selected " + new_player.inventory.get(1).name() + ".");
@@ -201,7 +212,7 @@ public class Menu {
             }
         }  
         
-        //select third item
+        //select third item if exist
         else if (selection == 3) {
             if (size >= 3) {
                 System.out.println("you selected " + new_player.inventory.get(2).name() + ".");
@@ -213,7 +224,7 @@ public class Menu {
             }           
         }  
         
-        //select fourth item
+        //select fourth item if exist
         else if (selection == 4) {
             if (size >= 4) {
                 System.out.println("you selected " + new_player.inventory.get(3).name() + ".");
@@ -280,9 +291,9 @@ public class Menu {
         return potion_count; 
     }
     
-    //basic raise health by 1 
+    //basic raise health by 25 
     public int raise_health(Player new_player) {        
-        new_player.health ++; 
+        new_player.health = new_player.health +25; 
         return new_player.health;
     }
     
